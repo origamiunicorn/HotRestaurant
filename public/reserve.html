@@ -24,11 +24,11 @@
             <h2 class="text-center">Make your reservation</h2>
             <br>
             <div class="text-center">
-                <a href="./table.html">
+                <a href="./table">
                     <button class="btn btn-lg btn-primary">
                         <span class="fa fa-list-alt"></span> View Tables</button>
                 </a>
-                <a href="./index.html">
+                <a href="./">
                     <button class="btn btn-lg btn-default">
                         <span class="fa fa-home"></span>
                     </button>
@@ -60,7 +60,7 @@
                                 <label for="reserve-unique-id">Unique ID</label>
                                 <input type="text" class="form-control" id="reserve-unique-id">
                             </div>
-                            <button type="submit" class="btn btn-primary submit">Submit</button>
+                            <button type="submit" class="btn btn-primary submit" id="makeReservation">Submit</button>
                         </form>
                     </div>
                 </div>
@@ -79,6 +79,7 @@
     </div>
     <script type="text/javascript">
 
+<<<<<<< HEAD
         $.get("/api/tables/", function (data) {
             var newDiv;
             if (data.length > 0) {
@@ -99,6 +100,28 @@
         });
 
     </script>
+=======
+    <script type="text/javascript">
+        // Question: What does this code do?
+        $("#makeReservation").on("click", function (event) {
+            event.preventDefault();
+            var newReserve = {
+                customerName: $("#reserve-name").val().trim(),
+                phoneNumber: $("#reserve-phone").val().trim(),
+                customerEmail: $("#reserve-email").val().trim(),
+                customerID: $("#reserve-unique-id").val().trim()
+            };
+
+            // Question: What does this code do??
+            $.post("/api/tables", newReserve)
+                .then(function (data) {
+                    console.log("reserve.html", data);
+                    alert("Adding reserve...");
+                });
+        });
+    </script>
+
+>>>>>>> master
 </body>
 
 </html>
