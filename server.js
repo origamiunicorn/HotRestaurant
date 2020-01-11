@@ -57,13 +57,13 @@ app.get("/api/waiting_list", function (req, res) {
 
 app.post("/api/reservations", function (req, res) {
     var newCustomer = req.body;
-    console.log(customers.length);
     if (customers.length > 1) {
         console.log(newCustomer);
         waitingList.push(newCustomer);
     } else {
         customers.push(newCustomer);
     }
+    return res.json(newCustomer);
 });
 
 // Starts the server to begin listening

@@ -78,28 +78,6 @@
 
     </div>
     <script type="text/javascript">
-
-        $.get("/api/tables/", function (data) {
-            var newDiv;
-            if (data.length > 0) {
-                for (var i = 0; i < data.length; i++) {
-
-                    newDiv = $(`<div><strong>Customer Name:</strong> ${data[i].customerName}</div>
-    <div><strong>Phone Number:</strong>${data[i].phoneNumber}</div>
-    <div><strong>Email:</strong>${data[i].customerEmail}</div>
-    <div><strong>Customer ID:</strong>${data[i].customerID}</div>
-    <hr>`);
-                    $("#tableList").append(newDiv);
-
-                }
-            }
-            else {
-                $("#tableList").text("No customer available!");
-            }
-        });
-
-    </script>
-    <script type="text/javascript">
         // Question: What does this code do?
         $("#makeReservation").on("click", function (event) {
             event.preventDefault();
@@ -111,10 +89,10 @@
             };
 
             // Question: What does this code do??
-            $.post("/api/tables", newReserve)
+            $.post("/api/reservations", newReserve)
                 .then(function (data) {
                     console.log("reserve.html", data);
-                    alert("Adding reserve...");
+                    alert("Adding reservation...");
                 });
         });
     </script>
