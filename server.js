@@ -16,8 +16,16 @@ var customers = [
         phoneNumber: 1123445,
         customerEmail: "test@abc.com",
         customerID: 1
+    },
+    {
+        customerName: "John",
+        phoneNumber: 87878787,
+        customerEmail: "test2@abc.com",
+        customerID: 2
     }
 ];
+
+var waitingList = [];
 
 app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, "public/index.html"));
@@ -30,6 +38,15 @@ app.get("/table", function (req, res) {
 
 app.get("/api/tables", function (req, res) {
     return res.json(customers);
+});
+
+app.post("/api/reservations", function (req, res) {
+    var newCustomer = req.body;
+    if (customers.length > 5) {
+        waitingList.push(newCustomer);
+    } else {
+        customers.push(newCustomer);
+    }
 });
 
 // Starts the server to begin listening

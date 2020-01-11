@@ -40,8 +40,7 @@
                     <div class="card-header">
                         <h4>Current Reservations</h4>
                     </div>
-                    <div class="card-body">
-                        <ul id="tableList" class="list-group"></ul>
+                    <div class="card-body" id="tableList">
                     </div>
                 </div>
 
@@ -68,5 +67,24 @@
         </footer>
 
     </div>
+    <script type="text/javascript">
 
+        $.get("/api/tables/", function (data) {
+            var newDiv;
+            for (var i = 0; i < data.length; i++) {
+                //if (data) {
+                newDiv = $(`<div><strong>Customer Name:</strong> ${data[i].customerName}</div>
+    <div><strong>Phone Number:</strong>${data[i].phoneNumber}</div>
+    <div><strong>Email:</strong>${data[i].customerEmail}</div>
+    <div><strong>Customer ID:</strong>${data[i].customerID}</div>
+    <hr>`);
+                $("#tableList").append(newDiv);
+                /*}
+                else {
+                    $("#tableList").text("The force is not strong with this one. Your character was not found.");
+                }*/
+            }
+        });
+
+    </script>
 </body>
