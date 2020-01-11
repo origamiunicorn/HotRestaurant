@@ -25,7 +25,14 @@ var customers = [
     }
 ];
 
-var waitingList = [];
+var waitingList = [
+    {
+        customerName: "jjhjhjhjkh",
+        phoneNumber: 87878787,
+        customerEmail: "test2@abc.com",
+        customerID: 2
+    }
+];
 
 app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, "public/index.html"));
@@ -36,13 +43,23 @@ app.get("/table", function (req, res) {
     res.sendFile(path.join(__dirname, "public/table.html"));
 });
 
+app.get("/reserve", function (req, res) {
+    res.sendFile(path.join(__dirname, "public/reserve.html"));
+});
+
 app.get("/api/tables", function (req, res) {
     return res.json(customers);
 });
 
+app.get("/api/waiting_list", function (req, res) {
+    return res.json(waitingList);
+});
+
 app.post("/api/reservations", function (req, res) {
     var newCustomer = req.body;
-    if (customers.length > 5) {
+    console.log(customers.length);
+    if (customers.length > 1) {
+        console.log(newCustomer);
         waitingList.push(newCustomer);
     } else {
         customers.push(newCustomer);
