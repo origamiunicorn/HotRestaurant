@@ -12,10 +12,10 @@ app.use(express.json());
 
 var customers = [
     {
-        customerName: "",
-        phoneNumber: "",
-        customerEmail: "",
-        customerID: ""
+        customerName: "John Smith",
+        phoneNumber: 1123445,
+        customerEmail: "test@abc.com",
+        customerID: 1
     }
 ];
 
@@ -23,9 +23,12 @@ app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, "index.html"));
 });
 
+app.get("/tables", function (req, res) {
+    res.sendFile(path.join(__dirname, "tables.html"));
+});
 
 app.get("/api/tables", function (req, res) {
-    res.sendFile(path.join(__dirname, "tables.html"));
+    return res.json(customers);
 });
 
 // Starts the server to begin listening
